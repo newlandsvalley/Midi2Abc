@@ -1,0 +1,653 @@
+@charset "utf-8";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+strong { font-weight: bold; }
+
+em { font-style: italic;
+     font-weight: bold
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* GENERAL
+---------------------------------------------- */
+body {
+	color: #1d3d76;
+	font: 100% "Trebuchet MS", Verdana, sans-serif;
+	padding-bottom: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #b74e07;
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 1.5em; /* 24px/16px */
+	margin-bottom: .75em;
+	text-transform: lowercase;
+}        
+
+h2 {
+	font-size: 1.375em; /* 22px/16px */
+}
+
+p {
+	margin: 0 0 .5em;
+	padding-right: 10px;
+}
+
+/* link states */
+a {
+	padding: .2em;
+}
+
+a:link {
+	color: #597dbd;
+	text-decoration: underline;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #597dbd;
+}
+
+a:focus,
+a:hover,
+a:active {
+        color: black; 
+	background: #f3f6c6;
+	text-decoration: none;
+}
+
+
+a:hover.current {
+	cursor: default;
+	text-decoration: none;
+}
+
+/* EXPERIMENTAL 
+---------------------------------------------- */
+
+/* Contain floats: h5bp.com/q */
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+/* FORMS
+---------------------------------------------- */
+
+fieldset {
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 2px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  padding: 0 10px;
+}
+
+legend ul {
+  background-color: #fff; 
+  border: 1px solid #eaeaea;
+  list-style: none;
+  margin: 12px;
+  padding: 12px;
+}
+
+
+fieldset ul li {
+  /* margin: 0.5em o; */
+  margin: 5px auto 5px auto;
+  list-style-type: none;
+}
+
+fieldset ul li:first-child {
+   padding-top: 0.5em;
+}
+
+label {
+  display: inline-block;
+  padding: 3px 6px;
+  text-align: right;
+  width: 100px;
+  vertical-align: top;
+}
+
+/* label alignment in forms */
+.metadata dt label {
+  width: 275px;
+}
+
+
+label.newtune,
+.newtune label {
+  width: 75px;
+}
+
+
+/* end of form alignment */
+
+legend {
+  background-color: #669966; /* dark green */
+  border-top: 1px solid #d4d4d4;
+  border-bottom: 1px solid #d4d4d4;
+  -moz-box-shadow: 3px 3px 3px #ccc;
+  -webkit-box-shadow: 3px 3px 3px #ccc;
+  box-shadow: 3px 3px 3px #ccc;
+  font-size: 1em;
+  text-transform: uppercase;
+  padding: 0.3em 1em;
+}
+
+input, select, button {
+  font-size: 100%;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+	padding: 2px 3px;
+    color: black; 
+    background: #f3f6c6;
+	width: 200px; 
+}
+
+input[type="textarea"] {
+        background: #f3f6c6;
+}
+
+
+/* the file button */
+
+/* the submit (and other) buttons */
+.button-link,
+input[type='submit'] {
+    background: #66cc66;
+	border: none;
+	border-radius: 4px;
+	box-shadow: 2px 2px 2px #333;
+	cursor: pointer;
+    font-size: 100%;
+	color: black;
+	margin: 12px;
+	/* padding: 8px; */
+	padding: 5px; 
+        -webkit-transition-duration: 0.2s;
+        -moz-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+}
+
+.button-link:hover,
+input[type="submit"]:hover {
+  background: #669966;
+}
+
+/* delete submissions mimicking simple links */
+input[type="submit"].delete {
+  background: transparent;
+  color: blue;
+  margin: none;
+  padding: none;	
+  text-decoration: underline;
+  box-shadow: none;
+}
+
+input[type="text"]#searchcriteria {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* a comment subject */
+input[type="text"]#subject {	
+	width: 250px; 
+}
+
+.input_tip {
+  font-size: 70%;
+  padding: 3px 6px;
+  text-align: left; 
+  height: 5px; 
+  margin: 0 auto 20px auto;
+}
+
+
+/*
+.button-link:active {
+    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: #006B24;
+    border: solid 1px #203E5F;
+}
+*/
+
+
+select {
+   background-color: #cccc99;
+}
+
+/* The different forms */
+#loginform,
+#searchform {
+  width: 400px;
+  text-align: middle;
+}
+
+#advancedsearchform {
+  width: 600px;
+}
+
+
+#newuserform {
+  width: 550px;
+}
+
+#newtuneform {
+  text-align: middle;
+}
+
+#uploadtuneform {
+  text-align: middle;
+}
+
+span.errors {
+  color: #b94a48;
+}
+
+span.help {
+ color: #669966;
+}
+
+/* Centre Main Pages
+---------------------------------------------- */
+
+#metadatadiv { 
+  width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+#acknowledgediv,
+#logindiv { 
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+#tunediv { 
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 250px; 
+}
+
+#abcdiv { 
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 250px; 
+}
+
+
+#contactdiv,
+#helpdiv,
+#creditsdiv { 
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+#uploadtunediv { 
+  width: 35%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#abcnotes {
+    float: left;
+}
+
+
+/* TABLES
+---------------------------------------------- */
+
+table#samplesearch {
+    margin: 12px;
+    table-layout: fixed;
+    border-collapse:separate;
+    border-spacing:10px 2px;
+}
+
+td {
+    white-space: nowrap;
+}
+
+.tunelist table tr td {
+   padding: 0.25em 1em;
+}
+
+.tunelist table tr td a:hover {
+   color: black;   
+   text-decoration: underline;
+   background: transparent;
+}
+
+
+.userlist table tr td {
+   padding: 0.25em 1em;
+}
+
+.userlist table tr td a:hover {
+   color: black;   
+   text-decoration: underline;
+   background: transparent;
+}
+
+table.textalign tr td  {
+   padding-left: 2em;
+   padding-right: 2em;
+}
+
+/* Just a simple list of text items 
+---------------------------------------------- */
+.textList {
+	list-style: none;
+}
+
+.textList li {
+	margin: 10px 30px; 
+}
+
+
+
+
+/* IMAGES
+---------------------------------------------- */
+
+img {
+    float: left;
+}
+
+/* CONTAINERS
+---------------------------------------------- */
+#container {
+	margin: 20px auto;
+	width: 90%;
+}
+
+#page {
+	background: #fff;
+	padding: 0 10px 10px 0;
+	# max-width: 940px; 
+	width: 97.9167%; 
+}
+
+.main {
+        clear: both;
+}
+
+#footer {
+	clear: both;
+	margin-top: 10px;
+}
+
+#footer p {
+	clear: both;
+	margin-top: 10px;
+}
+
+/* MASTHEAD
+---------------------------------------------- */
+#masthead {
+	margin-bottom: 30px;
+}
+
+/* Logo */
+.mainlogo {
+   height: 60px; 
+   line-height:60px; 
+   clear: both;
+   margin: 0;
+   /* font-size: 100%; */
+   font-family: 'Fondamento', cursive;
+   display:inline;
+   vertical-align: bottom; 
+}
+
+.mainlogoprefix { 
+   float: left;
+   color: green;
+   font-size: 250%;
+   vertical-align: bottom; 
+}
+
+.mainlogosuffix { 
+	float: left;
+    color: black;
+	font-size: 125%;
+    vertical-align: bottom; 
+    line-height: 70px;
+}
+
+/* ::: Banner Navigation ::: */
+#masthead div>nav {
+    clear: both;
+	float: left;
+    background-color: #224422; /* hard dark green */
+    width: 100%;
+}
+
+ 
+/* Site Nav */
+.nav li {
+	float: left;
+	font-size: .75em; /* 12px/16px */  /* makes the bullets smaller */
+	/* padding: 0 25px 0 3px; */
+	padding: 3.5px 25px 3.5px 3px;
+}
+
+.nav li a {
+	font-size: 1.5em; /* 18px/12px */  /* makes the linked text larger than the bullets */
+        color: #cccc99; /* light greenish grey */
+        text-decoration: none;
+        list-style-type: none;
+}	
+
+.nav li:first-child {
+	list-style: none;
+	padding-left: 20px;
+}
+
+/*
+.nav li:last-child {
+        float: right;  
+	padding-right: 20px;
+}
+*/
+
+.nav li a.current,
+.nav li a:hover {
+        color: white;   
+        background-color: #224422; /* hard dark green */
+}
+
+
+/** the metadata form */
+
+dl {  
+    padding: 0;
+  }
+  dt {
+    float: left;
+    clear: left;
+  }
+  dt:after {
+    content: " :";
+  }
+  dd {
+    margin: 0 0 0 314px;
+    width: 400px;
+    padding: 0 0, 0.3em 0; 
+  }
+
+/** navigation for pagination */
+
+.pagination ul {
+    padding-left: 15px;
+}
+
+.pagination li {
+   float: left;
+   padding: 3.5px 4px 3.5px 4px; 
+   font-size: .90em;
+   list-style-type: none;
+   display: inline;
+}
+
+.pagination li:last-child {
+    float: left;  
+    padding-right: 20px;
+}
+
+.pagination li a {  
+   color: blue;
+   text-decoration: none;
+   display: inline-block;
+}
+
+.pagination li a:hover {
+   color: black;   
+   text-decoration: underline;
+   background: transparent;
+}
+
+.pagination li a.current {
+   color: black;   
+   text-decoration: none;
+}
+
+
+
+
+/* FOOTER
+---------------------------------------------- */
+#footer h1 {
+	font-size: 100%;
+	margin-bottom: .25em;
+	padding-top: .25em;
+}
+
+#footer p {
+	font-size: .6875em;
+}
+
+/* Horizontal Nav (below main content) */
+.hnav {
+     float: left;
+     margin: 0 0 0 20px;
+     display: inline-block;
+     padding-top: 1.5%;
+}
+
+/* Vertical Nav (to right of main content) */
+.vnav {
+     margin: 50px 0 0 60px;
+     display: inline-block;
+}
+
+
+.vnav ul li {
+ list-style-type: none;
+}
+
+/* EXERIMENTAL for file input button styling
+---------------------------------------------- */
+
+.fileinput::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.fileinput:before {
+  content: 'Select file';
+  display: inline-block;  
+  box-shadow: 2px 2px 2px #333;
+  background: #66cc66;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  margin: 0px 12px; 
+  -webkit-user-select: none;color: black;
+   -webkit-transition-duration: 0.2s;
+   -moz-transition-duration: 0.2s;
+   transition-duration: 0.2s;  
+  cursor: pointer;
+  font-size: 100%;
+}
+.fileinput:hover:before {
+  border-color: black;
+}
+.fileinput:active:before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+
+ 
+      
+	
+

@@ -1,0 +1,71 @@
+@(title: String)(navigation: Html)(content: Html)
+
+<!DOCTYPE html>
+<html>
+<!--[if lt IE 7 ]> <html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-us" class="ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-us"> <!--<![endif]-->
+<head>
+        <title>@title : midi2abc</title>
+	<meta charset="utf-8" />
+        <meta name="keywords" content="traditional music session tunes" />
+        <meta name="description" content="Traditional Music" />
+        <meta name="author" content="John Watson (newlandsvalley)" />
+        <meta name="copyright" content="public domain" />
+        <meta name="robots" content="noindex,follow" />
+        <link href='http://fonts.googleapis.com/css?family=Fondamento' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/base.css")">   
+        <link rel="shortcut icon" type="image/ico" href="@routes.Assets.at("images/favicon.ico")" >
+
+</head>
+<body >
+  <div id="container">
+    <div id="page">
+       <!-- ==== START MASTHEAD ==== -->
+       <header id="masthead" role="banner" class="clearfix">
+
+         <div>
+           <nav role="navigation" >
+             <ul class="nav">
+              @navigation
+             </ul>
+           </nav>       
+         </div>
+       </header>
+       <!-- end #masthead -->
+		
+       <!-- ==== START MAIN CONTENT ==== -->
+       @content
+       <!-- end #main content -->		
+   
+       <!-- ==== START FOOTER ==== -->
+       <footer id="footer" role="contentinfo">
+         <h1><div class="mainlogo"><span class="mainlogoprefix">midi2abc</span></div></h1>
+ 
+         <div class="credits">
+           <nav role="navigation" class="hnav">   
+           
+               @if(!(title == "about")) {
+                 <a href="/about" >about</a>
+               }           
+               @if(!(title == "credits")) {
+                 <a href="/credits" >credits</a>
+               }
+               @if(!(title == "contact us")) {
+                 <a href="/contact" >contact us</a>
+               }
+               @if(!(title == "help")) {
+                 <a href="/help" >help</a>
+               }
+           </nav>
+         </div>
+
+       </footer>
+       <!-- end #footer -->
+     </div>
+     <!-- #page -->	
+   </div>
+<!-- #container -->	
+</body>
+</html>

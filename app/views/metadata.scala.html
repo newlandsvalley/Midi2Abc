@@ -1,0 +1,118 @@
+@(tuneForm: Form[TuneMetadata], filename: String)(abc: Option[String])(tuneImageRef: Option[String])(tuneImageError: Option[String])
+
+@import snippets._ 
+@import helper._
+
+@abcText=@{abc.getOrElse("")}
+@imageUrl=@{tuneImageRef.getOrElse("")}
+@imageError=@{tuneImageError.getOrElse("")}
+
+@main("metadata")(navigation("home"))  {         
+      <div id="metadatadiv" role="main" class="main" >
+       
+         @helper.form(action = routes.Application.processMetadata, 'id -> "metadataform", 'enctype -> "application/x-www-form-urlencoded" ) {
+          
+           <fieldset>
+            <legend >Step 2: add tune information</legend>
+             <ul>         
+              <li>  
+               @select(field = tuneForm("trackno"), options( "0"->"0",
+                                                             "1"->"1",
+                                                             "2"->"2",
+                                                             "3"->"3",
+                                                             "4"->"4",
+                                                             "5"->"5",
+                                                             "6"->"6"
+                                                           ), '_label -> "midi track",'_class -> "metadata")
+      
+              </li>
+              <li>
+              @select(field = tuneForm("leadin"), options( "(0%8)"->"none",
+                                                           "(1%16)"->"1/16",
+                                                           "(1%8)"->"1/8",
+                                                           "(3%16)"->"3/16",
+                                                           "(1%4)"->"1/4",
+                                                           "(5%16)"->"5/16",
+                                                           "(3%8)"->"3/8",
+                                                           "(7%16)"->"7/16",
+                                                           "(1%2)"->"1/2",
+                                                           "(9%16)"->"9/16",
+                                                           "(5%8)"->"5/8",
+                                                           "(3%4)"->"3/4"
+                                                         ),'_label -> "lead in bar length",'_class -> "metadata")
+     
+              </li>
+              <li> 
+               @select(field = tuneForm("notelen"), options( "(1%16)"->"1/16",
+                                                             "(1%8)"->"1/8" 
+                                                           ),'_label -> "default note length",'_class -> "metadata")
+               
+     
+              </li>
+              <li>
+              @select(field = tuneForm("rhythm"), options( "Polska"->"polska",
+                                                           "Engelska"->"engelska",
+                                                           "Gånglåt"->"gånglåt",
+                                                           "Hambo"->"hambo",
+                                                           "Marsch"->"marsch",                                                           
+                                                           "Schottis"->"schottis",
+                                                           "Skänklåt"->"skänklåt",
+                                                           "Waltz"->"waltz",
+                                                           "Hornpipe"->"hornpipe",
+                                                           "Jig"->"jig",
+                                                           "Polka"->"polka",
+                                                           "Reel"->"reel",
+                                                           "Slide"->"slide",
+                                                           "SlipJig"->"slip jig"
+                                                         ),'_class -> "metadata")
+     
+              </li>
+ 
+              <li>  
+               @select(field = tuneForm("key"), options = options( "An"->"A",
+                                                                   "Ash"->"A#",
+                                                                   "Bfl"->"B♭",
+                                                                   "Bn"->"B",
+                                                                   "Cn"->"C",
+                                                                   "Csh"->"C#",
+                                                                   "Dfl"->"D♭",
+                                                                   "Dn"->"D",
+                                                                   "Dsh"->"D#",
+                                                                   "Efl"->"E♭",
+                                                                   "En"->"E",
+                                                                   "Fn"->"F",
+                                                                   "Gfl"->"G♭",
+                                                                   "Gn"->"G",
+                                                                   "Gsh"->"G#",
+                                                                   "Afl"->"A♭"
+                                                           ),'_class -> "metadata")
+      
+              </li>
+              <li>
+               
+              @select(field = tuneForm("mode"), options = options("Major"->"major","Minor"->"minor"),'_class -> "metadata")
+     
+              </li>
+            </ul>
+            <input type=hidden name=filename value="@filename">
+            <input type="submit" value = "translate to ABC" />            
+           </fieldset>
+        }
+
+        @if(abc.isDefined) {
+           <textarea disabled rows="20" cols="100">@abcText</textarea>
+        }
+
+        @if(tuneImageRef.isDefined) {        
+         <div  id="tunediv"  role="main" class="main" >  
+             <img src="@imageUrl" alt="some name"/> 
+         </div>
+        }    
+        
+        @if(tuneImageError.isDefined) {        
+            <p>@imageError</p>
+        }    
+       </div>
+}
+
+

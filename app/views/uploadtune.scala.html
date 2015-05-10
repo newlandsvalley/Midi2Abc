@@ -1,0 +1,30 @@
+@(message: String)
+
+@import snippets._
+
+@main("upload")(navigation("home")) {         
+    <div id="uploadtunediv" role="main" class="main" >
+
+   @helper.form(action = routes.Application.processUpload, 'enctype -> "multipart/form-data", 'id -> "uploadtuneform" ) {    
+     <fieldset>
+       <legend >Step 1: upload tune</legend>
+          <ul>
+            <li>
+             <p>Upload a midi file (file extension: <em>.midi</em> or <em>.mid</em>)</p>
+            </li>
+            <li>
+             <p>It must be a monophonic tune with a single melody line</p>
+            </li>
+            <li>
+             <input type="file" name="midi" class ="fileinput" value="load midi file" accept=".midi, .mid" media_type="audio/midi" >
+            </li>
+          </ul>
+          <p>
+           <input type="submit" value="next">
+          </p>
+      </fieldset>
+    }
+   </div>
+}
+
+
