@@ -10,8 +10,7 @@ import scala.util.{Try, Success, Failure}
 import models.TuneRef
 
 
-object Proxy {
-   
+object Proxy {   
 
    val basicAuth = DatatypeConverter.printBase64Binary( (Utils.musicrestUsername + ":" + Utils.musicrestPassword).getBytes("UTF-8") )
 
@@ -25,9 +24,7 @@ object Proxy {
        for (exc <- resp.left) 
               yield "transcoding service not up: " +   exc.getMessage
      }
-   }
-
-   
+   }   
 
    /** post a new tune to musicrest 
     *
@@ -58,7 +55,6 @@ object Proxy {
      }
    }
 
-
    /** quick and dirty mechanism to detect connect exceptions */
    def isConnectException(e: Throwable) : Boolean = {
       if (e.isInstanceOf[java.util.concurrent.ExecutionException]) {
@@ -68,48 +64,7 @@ object Proxy {
       else
         false
    }
-
  
-
-   /** check that the tune exists */
-/*
-   def existsTune1(initialRequest: Request[AnyContent], genre: String, name: String): Boolean = withHttp {   
-     http => {      
-       val headers = Map("Accept" -> "text/plain; charset=UTF-8")
-       val urlString = Utils.remoteService + "genre/" + genre + "/tune/" + name + "/exists"
-        
-       def req =  (url(urlString) <:< headers)
-       try {
-          val resp = http(req as_str)
-          Logger.debug("asked if tune exists OK, response: " + resp)
-          resp.contains("true")
-       }
-       catch {
-         case e: Throwable => {
-           Logger.debug("error (tune exists) found by proxy: " + e.getMessage())
-           false    
-           }
-       }
-     }
-   }  
-*/
-   
-   // experimental
-/*
-   def existsTune(initialRequest: Request[AnyContent], genre: String, tune: String): (Boolean, String) = withHttp {   
-     val response: Validation[String, String] = getAbc(initialRequest, "application/json", genre, tune)
-     http => response.fold(
-       e => { 
-          (false, null)
-       }
-       ,
-       abcJsonMeta =>  { 
-         (true, abcJsonMeta)
-       }   )  
-   }
-*/
-
-
    private def withHttp [A] (body: (Http) => A) : A = {
       val http = new Http   
       try 

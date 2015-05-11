@@ -9,15 +9,16 @@
           which could generate simple abc representations of traditional tunes so that they could then be submitted to tradtunedb.
        </p>
 
-       <p>You must first get hold of a simple midi recording of the tune in question.  It is important that there is only one instrument
-          or 'voice' in this recording and that it should consist of a melody played relatively simply, without chords and with a minimum
-          of ornamentation.  If the generated abc is to be at all accurate, the tune should be played strictly in rhythm.  The file type
-          of the recording should be '.mid' or '.midi' and the file should not be too large.  You then need to click on 'select file' and 
-          enter the location of this file. After this, you will be asked for some information about the tune.
+       <p>You must first get hold of a simple midi recording of the tune in question.  It is important that midi2abc is able to find the melody
+          within this recording, which should consist of only one instrument or 'voice' and should be played relatively simply, without chords 
+          and with a minimum of ornamentation. The recording can either be a single-track recording, or multi-track if you are able to determine
+          the track that holds the melody.  If the generated abc is to be at all accurate, the tune should be played strictly in rhythm.  
+          The file type of the recording should be '.mid' or '.midi' and the file should not be too large.  You then need to click on 
+          'select file' and enter the location of this file. After this, you will be asked for some information about the tune.
        </p> 
        <h2>What tune information is required?</h2>
 
-       <p><em>Midi track.</em> If you have recorded to a single track midi file, it doesn't matter what yu enter here because it will be 
+       <p><em>Midi track.</em> If you have recorded to a single track midi file, it doesn't matter what you enter here because it will be 
        implicitly recorded on track zero (no other tracks are present). Otherwise, choose the number of the track that contains the melody.
        </p>
 
@@ -25,27 +26,25 @@
        <p><em>Lead in bar length.</em> Some tunes start exactly on the first beat of the bar, in which case you should enter 'none'.  Others
           may have a few lead-in notes before the first proper bar is reached.  In such cases you should enter the length of this
           introductory bar, expressed as a fraction of a whole note duration.  In other cases, the midi recording will start with a few
-          measures of 'rest' in which case, although there is a lead-in, it is catered for in the recording. So, for example, if you have an 
+          measures of 'rest' in which case, although there is a lead-in, it is catered for in the recording. If, for example, you have an 
           introductory bar consisting of a crochet with the rests before it not recorded, you would enter '1/4' for the introduction length. 
           You can thus use this setting to shift the position of the bar line slightly forwards or backwards until it matches the tune.
        <p>
        <p><em>Default note length</em> It doesn't matter too much what you choose here.  It affects the representation used by abc to describe
-          a note duration.  Typically you would use 1/8 for tunes with a preponderance of long notes (such as minims and crochets) and 1/16 
-         for tunes with a preponderance of short notes (such as quavers and semiquavers).
+          a note duration.  Typically you would use 1/8 for tunes with a preponderance of long notes (minims and crochets) and 1/16 
+         for tunes with a preponderance of short notes (quavers and semiquavers).
        </p> 
 
-       <p><em>Rhythm.</em> Currently a set of rhythms is available which correspomd in the main to Celtic or Scandinavian tune forms and
+       <p><em>Rhythm.</em> Currently a set of rhythms is available which correspond in the main to Celtic or Scandinavian tune forms and
         are consistent with the rhythms supported by tradtunedb.  Choose the rhythm which most closely describes your tune, and contact
         us if you feel that this list needs to be extended.
        </p>
-
   
        <p><em>Key.</em> Simply the home key of the tune.  Although this information is usually in the midi file itself, it seems
         very often to be inaccurate.
        </p>
 
-       <p><em>Mode.</em> Major or Minor.  Other modes (e.g. Mixolydian) may be added later if there is sufficient demand.
-
+       <p><em>Mode.</em> Major or Minor.  Other modes (e.g. Mixolydian) may be added later if there is sufficient demand.</p>
 
        <p>If you are unhappy with the abc that is produced, you can keep altering the tune information and regenerating the abc until
           (hopefully) you are satisfied with it.

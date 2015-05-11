@@ -7,7 +7,7 @@
 @imageUrl=@{tuneImageRef.getOrElse("")}
 @imageError=@{tuneImageError.getOrElse("")}
 
-@main("metadata")(navigation("home"))  {         
+@main("convert")(navigation("home"))  {         
       <div id="metadatadiv" role="main" class="main" >
        
          @helper.form(action = routes.Application.processMetadata, 'id -> "metadataform", 'enctype -> "application/x-www-form-urlencoded" ) {
