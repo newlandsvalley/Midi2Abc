@@ -3,6 +3,7 @@ package utils
 import java.io.InputStream
 import play.api.{Play, Logger}
 import models.TuneRef
+import javax.xml.bind.DatatypeConverter
 
 object Utils {
 
@@ -44,5 +45,8 @@ object Utils {
   def imageUrl(tuneRef: TuneRef) : String = {
      remoteService + "genre/" + tuneRef.genre + "/tune/" + tuneRef.name + "/temporary" +"/png"
   }
+
+  def base64Encode(s: String) = DatatypeConverter.printBase64Binary( s.getBytes("UTF-8") )
+     
   
 }

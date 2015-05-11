@@ -2,10 +2,14 @@
 
 @import snippets._ 
 @import helper._
+@import utils._
 
 @abcText=@{abc.getOrElse("")}
+@abcTextEncoded=@{Utils.base64Encode(abcText)}
 @imageUrl=@{tuneImageRef.getOrElse("")}
 @imageError=@{tuneImageError.getOrElse("")}
+@downloadName=@{filename.takeWhile(_ != '_') + ".txt"}
+
 
 @main("convert")(navigation("home"))  {         
       <div id="metadatadiv" role="main" class="main" >
@@ -100,7 +104,8 @@
         }
 
         @if(abc.isDefined) {
-           <textarea disabled rows="20" cols="100">@abcText</textarea>
+          <textarea disabled rows="20" cols="100">@abcText</textarea>     
+          <a href="data:text/plain;charset=utf-8;base64,@abcTextEncoded" download="@downloadName">download abc</a>
         }
 
         @if(tuneImageRef.isDefined) {        
