@@ -207,7 +207,11 @@ input[type="textarea"] {
 }
 
 
-/* the file button */
+/* links alignment */
+
+#download {
+    float: left;
+}
 
 /* the submit (and other) buttons */
 .button-link,
@@ -262,41 +266,11 @@ input[type="text"]#subject {
 }
 
 
-/*
-.button-link:active {
-    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-    background: #006B24;
-    border: solid 1px #203E5F;
-}
-*/
-
-
 select {
    background-color: #cccc99;
 }
 
 /* The different forms */
-#loginform,
-#searchform {
-  width: 400px;
-  text-align: middle;
-}
-
-#advancedsearchform {
-  width: 600px;
-}
-
-
-#newuserform {
-  width: 550px;
-}
-
-#newtuneform {
-  text-align: middle;
-}
-
 #uploadtuneform {
   text-align: middle;
 }
@@ -311,18 +285,8 @@ span.help {
 
 /* Centre Main Pages
 ---------------------------------------------- */
-
 #metadatadiv { 
   width: 820px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-
-#acknowledgediv,
-#logindiv { 
-  width: 50%;
   margin-left: auto;
   margin-right: auto;
 }

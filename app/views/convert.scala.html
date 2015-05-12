@@ -105,7 +105,7 @@
 
         @if(abc.isDefined) {
           <textarea disabled rows="20" cols="100">@abcText</textarea>     
-          <a href="data:text/plain;charset=utf-8;base64,@abcTextEncoded" download="@downloadName">download abc</a>
+          <a id="download" href="data:text/plain;charset=utf-8;base64,@abcTextEncoded" download="@downloadName">download abc</a>
         }
 
         @if(tuneImageRef.isDefined) {        
