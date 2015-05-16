@@ -47,6 +47,15 @@ object Utils {
   }
 
   def base64Encode(s: String) = DatatypeConverter.printBase64Binary( s.getBytes("UTF-8") )
+
+  /** excise the (first occurrence of) the pattern from the target string */ 
+  def excise(pat:String, targ:String) : String = {
+    val pos = targ.indexOf(pat)
+    pos match {
+      case (-1) => targ
+      case n => targ.substring(0,n) + targ.substring(n + pat.length, targ.length)
+    }
+  }
      
   
 }

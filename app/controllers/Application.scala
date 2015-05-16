@@ -33,13 +33,15 @@ object Application extends Controller {
     request.body.file("midi").map { midi =>
       val filename = midi.filename 
       // generate a new file prefix with a random element to prevent files from multiple users clashing when written to the file system
-      val fileprefix = filename.takeWhile(c => c != '.') + "_" + random.alphanumeric.take(5).mkString
+      val slug = "_" + random.alphanumeric.take(5).mkString
+      val fileprefix = filename.takeWhile(c => c != '.') + slug
       val newfilename = fileprefix + ".mid"
       val contentType = midi.contentType
       Logger.debug(s"file length: ${midi.ref.file.length} content type: $contentType")
       // do basic validation on the submission
-      if (Some("audio/midi") != contentType)   {      
-         Redirect(routes.Application.error(s"Not a midi file: $contentType"))
+      if ((Some("audio/midi") != contentType) && (Some("audio/mid") != contentType))  {      
+         val badContentType = contentType.getOrElse("")
+         Redirect(routes.Application.error(s"Not a midi file: $badContentType"))
       }
       else if (10000 < midi.ref.file.length()) {      
          Redirect(routes.Application.error(s"File too big (${midi.ref.file.length()})"))
@@ -47,7 +49,7 @@ object Application extends Controller {
       else { 
          Logger.debug(s"file for upload: $filename")
          midi.ref.moveTo(new File(Utils.midiDir + "//"  + newfilename))
-         Redirect(routes.Application.convert(fileprefix, None, None, None))
+         Redirect(routes.Application.convert(fileprefix, None, None, None)).withSession("slug" -> slug)
       }
     }.getOrElse {
       Redirect(routes.Application.error("No file supplied"))
@@ -59,6 +61,7 @@ object Application extends Controller {
   }  
 
   def processMetadata = Action { implicit request => {     
+    val slug = request.session.get("slug").getOrElse("")
     metadataForm.bindFromRequest.fold (
       errors => {
          Logger.debug("metadata form errors: " + errors)
@@ -73,6 +76,7 @@ object Application extends Controller {
                 Logger.debug(s"metadata rhythm: ${metadata.rhythm}")
                 val source = scala.io.Source.fromFile(fn)
                 val lines = try source.mkString finally source.close()
+                val abc = Utils.excise(slug, lines)
                 val resultDisjunctionFuture = Proxy.postTune(Utils.genre(metadata.rhythm), lines)
                
                 try {
@@ -80,15 +84,15 @@ object Application extends Controller {
                   result match {
 
                     case Success(either) => either match {
-                      case (Left(error)) =>  Ok(views.html.convert(metadataForm.bindFromRequest, metadata.filename) (Some(lines)) (None) (Some(error))   )   
+                      case (Left(error)) =>  Ok(views.html.convert(metadataForm.bindFromRequest, metadata.filename) (Some(abc)) (None) (Some(error))   )   
                       case (Right(tuneRef)) => {
                          val url = Utils.imageUrl(tuneRef)
-                         Ok(views.html.convert(metadataForm.bindFromRequest, metadata.filename) (Some(lines)) (Some(url)) (None)  )   
+                         Ok(views.html.convert(metadataForm.bindFromRequest, metadata.filename) (Some(abc)) (Some(url)) (None)  )   
                          }
                       }
 
                     case Failure(e) => {
-                       Ok(views.html.convert(metadataForm.bindFromRequest, metadata.filename) (Some(lines)) (None) (Some(e.getMessage())))  
+                       Ok(views.html.convert(metadataForm.bindFromRequest, metadata.filename) (Some(abc)) (None) (Some(e.getMessage())))  
                     }
 
                   }
@@ -96,7 +100,7 @@ object Application extends Controller {
                 catch {
                    case (e:Exception) => { 
                      Logger.debug(s"no score transcoding service: ${e.getMessage()}")
-                     Ok(views.html.convert(metadataForm.bindFromRequest, metadata.filename) (Some(lines)) (None) (Some("service providing scores not available")))  
+                     Ok(views.html.convert(metadataForm.bindFromRequest, metadata.filename) (Some(abc)) (None) (Some("service providing scores not available")))  
                      }
                 }     
                   
