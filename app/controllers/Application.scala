@@ -34,7 +34,7 @@ object Application extends Controller {
       val filename = midi.filename 
       // generate a new file prefix with a random element to prevent files from multiple users clashing when written to the file system
       val slug = "_" + random.alphanumeric.take(5).mkString
-      val fileprefix = filename.takeWhile(c => c != '.') + slug
+      val fileprefix = filename.takeWhile(c => c != '.').filter(_.isLetterOrDigit) + slug
       val newfilename = fileprefix + ".mid"
       val contentType = midi.contentType
       Logger.debug(s"file length: ${midi.ref.file.length} content type: $contentType")
@@ -43,7 +43,7 @@ object Application extends Controller {
          val badContentType = contentType.getOrElse("")
          Redirect(routes.Application.error(s"Not a midi file: $badContentType"))
       }
-      else if (10000 < midi.ref.file.length()) {      
+      else if (40000 < midi.ref.file.length()) {      
          Redirect(routes.Application.error(s"File too big (${midi.ref.file.length()})"))
       }    
       else { 
